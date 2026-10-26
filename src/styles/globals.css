@@ -1,0 +1,461 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Design tokens
+   The values below are the "Royal Indian" defaults. They are replaced
+   at runtime by src/config/themes.ts (see applyTheme) so every component
+   can simply use the semantic tokens below.
+------------------------------------------------------------------ */
+:root {
+  --c-bg: #fdf8f1;
+  --c-bg-alt: #f6ead6;
+  --c-surface: #fffdf9;
+  --c-primary: #7b1224;
+  --c-primary-dark: #4e0817;
+  --c-primary-soft: #f0d8d3;
+  --c-accent: #c8952f;
+  --c-accent-soft: #f6e7c4;
+  --c-gold: #c8952f;
+  --c-gold-soft: #e3c88b;
+  --c-text: #3a2318;
+  --c-text-soft: #7a6355;
+  --c-text-invert: #fdf8f1;
+  --c-border: rgba(200, 149, 47, 0.38);
+  --c-overlay: rgba(78, 8, 23, 0.62);
+  --c-glow: rgba(200, 149, 47, 0.35);
+  --pattern-opacity: 0.45;
+}
+
+@theme inline {
+  --font-display: "Playfair Display", ui-serif, Georgia, serif;
+  --font-script: "Great Vibes", "Playfair Display", cursive;
+  --font-accent: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-body: "Poppins", ui-sans-serif, system-ui, sans-serif;
+
+  --color-bg: var(--c-bg);
+  --color-bg-alt: var(--c-bg-alt);
+  --color-surface: var(--c-surface);
+  --color-primary: var(--c-primary);
+  --color-primary-dark: var(--c-primary-dark);
+  --color-primary-soft: var(--c-primary-soft);
+  --color-accent: var(--c-accent);
+  --color-accent-soft: var(--c-accent-soft);
+  --color-gold: var(--c-gold);
+  --color-gold-soft: var(--c-gold-soft);
+  --color-ink: var(--c-text);
+  --color-ink-soft: var(--c-text-soft);
+  --color-line: var(--c-border);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--c-bg);
+    color: var(--c-text);
+    font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
+    font-weight: 300;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Playfair Display", ui-serif, Georgia, serif;
+    font-weight: 600;
+    line-height: 1.15;
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  ::selection {
+    background: var(--c-accent);
+    color: var(--c-text-invert);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--c-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Reusable component styles
+------------------------------------------------------------------ */
+@layer components {
+  .shell {
+    width: 100%;
+    max-width: 84rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  .section-pad {
+    padding-block: clamp(4rem, 8vw, 7.5rem);
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--c-accent);
+    font-family: "Poppins", sans-serif;
+  }
+
+  .section-title {
+    font-size: clamp(1.9rem, 4.6vw, 3.1rem);
+    letter-spacing: -0.01em;
+  }
+
+  .script {
+    font-family: "Great Vibes", cursive;
+    font-weight: 400;
+    line-height: 1.1;
+  }
+
+  .gold-text {
+    background-image: linear-gradient(
+      100deg,
+      var(--c-accent) 0%,
+      var(--c-gold-soft) 32%,
+      var(--c-accent) 58%,
+      #f6e7c4 100%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .hairline {
+    height: 1px;
+    flex: 1 1 auto;
+    background-image: linear-gradient(
+      to right,
+      transparent,
+      var(--c-border),
+      transparent
+    );
+  }
+
+  .card-royal {
+    position: relative;
+    border-radius: 1.75rem;
+    border: 1px solid var(--c-border);
+    background-color: var(--c-surface);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.7) inset,
+      0 22px 60px -34px rgba(58, 35, 24, 0.45);
+  }
+
+  .glass-panel {
+    background-color: color-mix(in srgb, var(--c-surface) 72%, transparent);
+    backdrop-filter: blur(14px) saturate(120%);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+    border: 1px solid var(--c-border);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    border-radius: 999px;
+    padding: 0.8rem 1.6rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      background-color 0.25s ease,
+      color 0.25s ease,
+      border-color 0.25s ease;
+    text-decoration: none;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .btn:active {
+    transform: translateY(0);
+  }
+
+  .btn-solid {
+    background-image: linear-gradient(
+      135deg,
+      var(--c-accent) 0%,
+      color-mix(in srgb, var(--c-accent) 70%, #ffffff) 100%
+    );
+    color: #2a1508;
+    box-shadow: 0 14px 34px -16px var(--c-glow);
+  }
+
+  .btn-solid:hover {
+    box-shadow: 0 20px 42px -16px var(--c-glow);
+  }
+
+  .btn-outline {
+    border-color: var(--c-border);
+    color: var(--c-text);
+    background-color: color-mix(in srgb, var(--c-surface) 60%, transparent);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--c-accent);
+    color: var(--c-accent);
+  }
+
+  .btn[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* Indian ornamental corner frame used on cards and the invitation */
+  .corner-ornament {
+    position: absolute;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-color: var(--c-accent);
+    opacity: 0.75;
+  }
+
+  .corner-ornament::after {
+    content: "";
+    position: absolute;
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 999px;
+    background: var(--c-accent);
+  }
+
+  .corner-tl {
+    top: 0.75rem;
+    left: 0.75rem;
+    border-top: 1px solid;
+    border-left: 1px solid;
+    border-top-left-radius: 1rem;
+  }
+  .corner-tl::after {
+    top: -0.2rem;
+    left: -0.2rem;
+  }
+
+  .corner-tr {
+    top: 0.75rem;
+    right: 0.75rem;
+    border-top: 1px solid;
+    border-right: 1px solid;
+    border-top-right-radius: 1rem;
+  }
+  .corner-tr::after {
+    top: -0.2rem;
+    right: -0.2rem;
+  }
+
+  .corner-bl {
+    bottom: 0.75rem;
+    left: 0.75rem;
+    border-bottom: 1px solid;
+    border-left: 1px solid;
+    border-bottom-left-radius: 1rem;
+  }
+  .corner-bl::after {
+    bottom: -0.2rem;
+    left: -0.2rem;
+  }
+
+  .corner-br {
+    bottom: 0.75rem;
+    right: 0.75rem;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+    border-bottom-right-radius: 1rem;
+  }
+  .corner-br::after {
+    bottom: -0.2rem;
+    right: -0.2rem;
+  }
+
+  /* Subtle repeating "jaali" / block-print texture */
+  .pattern-jaali {
+    background-image:
+      radial-gradient(
+        circle at 50% 50%,
+        color-mix(in srgb, var(--c-accent) 70%, transparent) 0 1.5px,
+        transparent 1.6px
+      ),
+      radial-gradient(
+        circle at 0% 0%,
+        color-mix(in srgb, var(--c-accent) 45%, transparent) 0 1px,
+        transparent 1.2px
+      );
+    background-size:
+      22px 22px,
+      22px 22px;
+    opacity: var(--pattern-opacity);
+  }
+
+  .pattern-arch {
+    background-image: repeating-linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--accent, var(--c-accent)) 22%, transparent) 0 1px,
+      transparent 1px 26px
+    );
+    opacity: 0.5;
+  }
+
+  .petal {
+    position: absolute;
+    width: 0.9rem;
+    height: 1.15rem;
+    border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+    background-image: linear-gradient(
+      140deg,
+      var(--petal-color, #f0b429) 0%,
+      color-mix(in srgb, var(--petal-color, #f0b429) 55%, #ffffff) 100%
+    );
+    box-shadow: 0 2px 10px -4px rgba(0, 0, 0, 0.35);
+    will-change: transform;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Animation helpers
+------------------------------------------------------------------ */
+@keyframes drift {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  90% {
+    opacity: 0.75;
+  }
+  100% {
+    transform: translate3d(var(--drift-x, 4vw), 110vh, 0) rotate(var(--drift-rot, 220deg));
+    opacity: 0;
+  }
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-6deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(9deg);
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -180% 0;
+  }
+  100% {
+    background-position: 180% 0;
+  }
+}
+
+.anim-drift {
+  animation: drift linear infinite;
+}
+
+.anim-sway {
+  animation: sway 5.5s ease-in-out infinite;
+}
+
+.anim-spin-slow {
+  animation: spin-slow 34s linear infinite;
+}
+
+.anim-pulse-soft {
+  animation: pulse-soft 5s ease-in-out infinite;
+}
+
+.anim-twinkle {
+  animation: twinkle 2.6s ease-in-out infinite;
+}
+
+.anim-shimmer {
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--c-gold-soft) 80%, transparent) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 4.5s linear infinite;
+}
+
+/* Accessibility: honour the visitor's motion preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
