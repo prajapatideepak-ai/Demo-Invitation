@@ -54,7 +54,7 @@ export const galleryTrack: AudioTrack = {
   artist: "Original instrumental",
 };
 
-/** Jubilant send-off shared by the venue, RSVP and thank-you sections. */
+/** Jubilant send-off shared by the venue and thank-you sections. */
 export const celebrationTrack: AudioTrack = {
   id: "celebration",
   src: "/audio/celebration.wav",
@@ -81,7 +81,6 @@ export const sectionMusic: Record<string, AudioTrack> = {
   story: storyTrack,
   gallery: galleryTrack,
   venue: celebrationTrack,
-  rsvp: celebrationTrack,
   thanks: celebrationTrack,
 };
 
@@ -100,6 +99,5 @@ export const musicSections: Array<{ id: string; track: AudioTrack }> = [
   "story",
   "gallery",
   "venue",
-  "rsvp",
   "thanks",
 ].flatMap((id) => (sectionMusic[id] ? [{ id, track: sectionMusic[id] }] : []));

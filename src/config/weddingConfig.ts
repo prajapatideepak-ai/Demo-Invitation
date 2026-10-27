@@ -79,7 +79,6 @@ export interface WeddingConfig {
   story: StoryMilestone[];
   gallery: GalleryImage[];
   venue: VenueConfig;
-  rsvpDeadlineLabel: string;
   closingTitle: string;
   closingMessage: string;
   signature: string;
@@ -267,7 +266,6 @@ export const weddingConfig: WeddingConfig = {
     contactPhone: "+91 98200 00000",
   },
 
-  rsvpDeadlineLabel: "Please respond by 20 January 2027",
   closingTitle: "Thank You",
   closingMessage:
     "Your presence and blessings mean more to us than any gift. Come celebrate with us, eat too much, dance badly and make this day unforgettable.",

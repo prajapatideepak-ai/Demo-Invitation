@@ -13,7 +13,6 @@ const NAV_LINKS: Array<{ id: string; label: string }> = [
   { id: "story", label: "Our Story" },
   { id: "gallery", label: "Gallery" },
   { id: "venue", label: "Venue" },
-  { id: "rsvp", label: "RSVP" },
 ];
 
 const SECTION_IDS = NAV_LINKS.map((link) => link.id);

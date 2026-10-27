@@ -85,7 +85,7 @@ Recommended: WebP or optimised JPEG, longest edge ≤ 1600 px. Gallery images ar
 | `public/audio/wedding.wav`          | Saath Janam      | Wedding Ceremony       |
 | `public/audio/story.wav`            | How We Met       | Love story             |
 | `public/audio/gallery.wav`          | Moments in Frame | Photo gallery          |
-| `public/audio/celebration.wav`      | See You There    | Venue, RSVP, Thank you |
+| `public/audio/celebration.wav`      | See You There    | Venue, Thank you |
 
 To swap in your own tracks, replace the files in `public/audio/` and update the paths in
 [`src/config/musicConfig.ts`](src/config/musicConfig.ts). The four function clips are read straight from
@@ -160,7 +160,6 @@ wedding-invitation/
 │   │   ├── LoveStory.tsx
 │   │   ├── PhotoGallery.tsx       # masonry + lightbox
 │   │   ├── VenueSection.tsx       # map + directions
-│   │   ├── RSVPForm.tsx
 │   │   ├── Footer.tsx
 │   │   └── …                      # Reveal, SectionHeading, FloatingPetals, SparkleField
 │   ├── config/
@@ -174,8 +173,6 @@ wedding-invitation/
 │   │   ├── useCountdown.ts
 │   │   ├── useSectionMusic.ts     # plays the track of the section in view
 │   │   └── useScrollReveal.ts
-│   ├── services/
-│   │   └── rsvpService.ts         # the single seam for a real backend
 │   ├── styles/
 │   │   └── globals.css
 │   ├── utils/
@@ -193,7 +190,7 @@ wedding-invitation/
 
 All sections are anchored and reachable from the sticky nav with smooth scrolling:
 
-`#home` → `#couple` → `#countdown` → `#events` → `#story` → `#gallery` → `#venue` → `#rsvp` → `#thanks`
+`#home` → `#couple` → `#countdown` → `#events` → `#story` → `#gallery` → `#venue` → `#thanks`
 
 The functions band also carries one anchor per ceremony — `#haldi`, `#mehendi`, `#sangeet`, `#wedding` — reached
 from the function pills at the top of the section. On mobile the nav collapses into a compact drawer.
@@ -219,15 +216,6 @@ Configuration lives in [`src/config/musicConfig.ts`](src/config/musicConfig.ts) 
 section's track there.
 
 ---
-
-## RSVP
-
-Frontend only. The form validates inline and, because there is no server, **your response is stored in this
-browser's `localStorage` and is never sent to the couple** — the UI says so explicitly.
-
-To connect a real backend later, set `RSVP_ENDPOINT` in [`src/services/rsvpService.ts`](src/services/rsvpService.ts)
-to your API URL. The service will then `POST` the payload instead of simulating the submission, and the form UI
-needs no changes.
 
 ---
 

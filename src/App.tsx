@@ -7,7 +7,6 @@ import Footer from "./components/Footer";
 import LoveStory from "./components/LoveStory";
 import Navbar from "./components/Navbar";
 import PhotoGallery from "./components/PhotoGallery";
-import RSVPForm from "./components/RSVPForm";
 import SectionHeading from "./components/SectionHeading";
 import VenueSection from "./components/VenueSection";
 import WelcomeSection from "./components/WelcomeSection";
@@ -121,7 +120,6 @@ function Invitation() {
           <LoveStory />
           <PhotoGallery />
           <VenueSection />
-          <RSVPForm />
         </main>
 
         <Footer />

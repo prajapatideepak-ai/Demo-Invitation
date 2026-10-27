@@ -169,7 +169,4 @@ export const weddingEvents: WeddingEvent[] = [
   },
 ];
 
-/** Look-up used by the RSVP form so guests can pick the functions they'll attend. */
-export const eventOptions = weddingEvents.map(({ id, title }) => ({ id, title }));
-
 export default weddingEvents;
